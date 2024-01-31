@@ -1,6 +1,8 @@
 using LibAppApi.Controllers;
 using LibAppApi.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,5 +30,14 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+
+// Enable CORS
+app.UseCors(builder =>
+{
+    builder.WithOrigins("http://localhost:5173")
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+});
 
 app.Run();

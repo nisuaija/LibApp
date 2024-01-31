@@ -1,0 +1,41 @@
+.nav-element:hover {
+    background-color: #46494931;
+}
+
+.nav-element-active {
+    color: inherit;
+    text-decoration: none;
+    background-color: #5B7B82!important;
+}
+
+.nav-element {
+    color: inherit;
+    text-decoration: none;
+}
+
+  
+.left-sidebar {
+    background-color: #121317;
+    padding: 20px;
+    min-width: 250px;
+    max-width: 250px;
+    padding: 0;
+  }
+  
+  .profile-info {
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.349);
+    
+  }
+  
+  .navigation-options ul {
+    list-style: none;
+    padding: 0%;
+    margin: 0;
+  }
+  
+  .navigation-options ul li {
+    padding: 25px;
+    cursor: pointer;
+  }
+  

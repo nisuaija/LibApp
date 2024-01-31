@@ -31,7 +31,7 @@ namespace LibAppApi.Controllers
                 httpClient.BaseAddress = new System.Uri("https://api.finna.fi/api/v1/");
 
                 // Call the external API to get the data
-                var response = await httpClient.GetAsync($"search?lookfor={title}&type=Title&field%5B%5D=rawData&sort=relevance%2Cid%20asc&page=1&limit=20&prettyPrint=false&lng=fi");
+                var response = await httpClient.GetAsync($"search?lookfor={title}&type=Title&field%5B%5D=rawData&sort=relevance%2Cid%20asc&page=1&limit=20&prettyPrint=false&lng=fi&filter%5B%5D=~format_ext_str_mv%3A\"0%2FBook%2F\"");
 
                 // Check if the request was successful
                 if (response.IsSuccessStatusCode)

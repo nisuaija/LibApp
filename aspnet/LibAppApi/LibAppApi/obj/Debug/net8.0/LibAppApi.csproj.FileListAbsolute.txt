@@ -106,3 +106,4 @@ F:\Buutti\LibApp\aspnet\LibAppApi\LibAppApi\obj\Debug\net8.0\refint\LibAppApi.dl
 F:\Buutti\LibApp\aspnet\LibAppApi\LibAppApi\obj\Debug\net8.0\LibAppApi.pdb
 F:\Buutti\LibApp\aspnet\LibAppApi\LibAppApi\obj\Debug\net8.0\LibAppApi.genruntimeconfig.cache
 F:\Buutti\LibApp\aspnet\LibAppApi\LibAppApi\obj\Debug\net8.0\ref\LibAppApi.dll
+F:\Buutti\LibApp\aspnet\LibAppApi\LibAppApi\obj\Debug\net8.0\LibAppApi.sourcelink.json
