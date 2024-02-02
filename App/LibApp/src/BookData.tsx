@@ -26,7 +26,7 @@ const BookData = (props : {data : book, failed : boolean}) => {
             </Row>
         </div>
         :
-        <p>404: Book not found</p>
+        <p>Book not found</p>
         }
         </>
     )

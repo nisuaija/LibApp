@@ -3,6 +3,7 @@ using System;
 using LibAppApi.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LibAppApi.Migrations
 {
     [DbContext(typeof(BooksContext))]
-    partial class BooksContextModelSnapshot : ModelSnapshot
+    [Migration("20240201093902_UserUpdate")]
+    partial class UserUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,22 +52,6 @@ namespace LibAppApi.Migrations
                     b.HasKey("finna_ID");
 
                     b.ToTable("Books", (string)null);
-                });
-
-            modelBuilder.Entity("LibAppApi.Models.SessionToken", b =>
-                {
-                    b.Property<string>("SessionID")
-                        .HasColumnType("text");
-
-                    b.Property<string>("UserID")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("SessionID");
-
-                    b.HasIndex("UserID");
-
-                    b.ToTable("SessionTokens", (string)null);
                 });
 
             modelBuilder.Entity("LibAppApi.Models.User", b =>
@@ -122,17 +109,6 @@ namespace LibAppApi.Migrations
                     b.HasIndex("userID");
 
                     b.ToTable("userBook");
-                });
-
-            modelBuilder.Entity("LibAppApi.Models.SessionToken", b =>
-                {
-                    b.HasOne("LibAppApi.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("LibAppApi.Models.userBook", b =>

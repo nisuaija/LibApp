@@ -1,6 +1,8 @@
 ﻿using LibAppApi.Models;
 using LibAppApi.Repositories;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LibAppApi.Controllers
 {
@@ -31,12 +33,12 @@ namespace LibAppApi.Controllers
         }
 
         [HttpGet("GetBook")]
-        public async Task<IActionResult> GetBook(string id)
+        public IActionResult GetBook(string id)
         {
             try
             {
                 Book book = _context.Books.FirstOrDefault(c => c.finna_ID == id);
-                if(book != null)
+                if (book != null)
                     return Ok(book);
                 else
                     return BadRequest($"No book with id: {id} found");
@@ -44,6 +46,50 @@ namespace LibAppApi.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost("AddUserBook")]
+        public IActionResult UserBook(string userID, userBook book)
+        {
+            try
+            {
+                var user = _context.Users.FirstOrDefault(c => c.userID == userID);
+
+                if (user == null)
+                {
+                    return NotFound("User not found");
+                }
+
+                user.userBooks ??= new List<userBook>();
+
+                user.userBooks.Add(book);
+
+                _context.SaveChanges();
+
+                return Ok(book);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet("GetUserBooks")]
+        public IActionResult GetUserBooks(string userID)
+        {
+            try
+            {
+                var userWithBooks = _context.Users.Include(u => u.userBooks).FirstOrDefault(u => u.userID == userID);
+
+                if (userWithBooks == null)
+                    return NotFound("User not found");
+
+                return Ok(userWithBooks.userBooks);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

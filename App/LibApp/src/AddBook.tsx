@@ -20,9 +20,19 @@ export interface book
     title : string
 }
 
-const AddBook = () =>
+interface userBook 
 {
+    finna_ID: string,
+    dueDate: Date,
+    startDate: Date,
+    endDate: Date,
+    pagesRead: number,
+    status: string
+}
 
+const AddBook = (props : {closePopUp :  () => void, getWishlisted : () => void}) =>
+{
+const [addingToDatabase, setAddingToDatabase] = useState(false);
 const [searchQuery, setSearchQuery] = useState("");
 const [searched, setSearched] = useState(false);
 const [isSearchComplete, setIsSearchComplete] = useState(false);
@@ -35,6 +45,58 @@ const [bookData, setBookData] = useState<book>({
     pages : 0,
     title : "default"
 });
+
+const AddBookToDatabase = async () => {
+    setAddingToDatabase(true);
+    try
+    {
+        const foundBook = await axios.get(`http://localhost:5175/api/Books/GetBook?id=${bookData.finna_ID}`);
+        console.log(`${foundBook.data.title} is already in database. Adding to wishlist...`);
+        AddBookToWishlist();
+    }
+    catch
+    {
+        console.log("Adding book to database...")
+        try
+        {
+            await axios.post(`http://localhost:5175/api/Books/AddBook`, bookData);
+            console.log("Book added successfully to database. Adding to wishlist...");
+            AddBookToWishlist();
+        }
+        catch (error)
+        {
+            console.log(error);
+            console.log("Book couldn't be posted to database");
+        }
+    }
+    props.closePopUp();
+}
+
+const AddBookToWishlist = async () => {
+
+    const newUserBook : userBook =
+    {
+        finna_ID: bookData.finna_ID,
+        dueDate: new Date("2021-03-25"),
+        startDate: new Date("2021-03-25"),
+        endDate: new Date("2021-03-25"),
+        pagesRead: 0,
+        status: "wishlist"
+    }
+    
+    try
+    {
+        console.log(localStorage.getItem('userID'));
+        await axios.post(`http://localhost:5175/api/Books/AddUserBook?userID=${localStorage.getItem('userID')}`, newUserBook);
+        console.log("Book added to wishlist");
+        props.getWishlisted();
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+
+}
 
 const GetID = async () => {
     try //Get ID from Finna
@@ -82,13 +144,14 @@ const GetID = async () => {
         <>
         <div className="SearchContainer">
             <div className="SearchPopUp">
+                <img onClick={props.closePopUp} className="x" src="X.png"></img>
                 <h5 className="titlecolor">Search a book</h5>
                 <InputGroup className="mt-4">
                     <Form.Control onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Title"
                     aria-label="searchQuery"
                     />
-                <Button onClick={() => {setSearched(true); GetID();}} className="searchButton" id="button-addon2">
+                <Button onClick={() => {setSearched(true); GetID();}} className="button" id="button-addon2">
                     <SearchIcon className="white-icon"/>
                 </Button>
                 </InputGroup>
@@ -96,11 +159,16 @@ const GetID = async () => {
             {searched &&
             <div className="SearchPopUp-Result">
                 { isSearchComplete == true ? <BookData data={bookData} failed={searchFailed}/>
-                : <p>Searching...</p> }          
+                : <img className="loadingGif" src="loadingGIF.gif" /> }          
             </div>}
-            {searched /*tilalle state joka tarkistaa onko result tullut*/  &&
+            {(isSearchComplete == true && searchFailed == false) &&
             <div className="SearchPopUp-Bottom">
-
+                <h5>Is this the book you were looking for?</h5>
+                { addingToDatabase == false ?
+                    <Button onClick={AddBookToDatabase} className="button">Add to wishlist</Button>
+                :
+                    <img className="loadingAdd" src="loadingGIF.gif" />
+                }
             </div>}
         </div>
         </>

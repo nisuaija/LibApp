@@ -24,12 +24,23 @@
   .titlecolor{
     color:  #86bac5;
   }
+
+  .button{
+    background-color:  #5B7B82;
+    border: 0;
+    display: block;
+  }
+
+  .button:hover{
+    background-color:  #4a6166;
+  }
   
   .header {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 5vh;
+    min-height: 50px;
+    max-height: 50px;
     background-color: #121317;
     padding: 5px;
   }
@@ -58,7 +69,8 @@
   }
 
   .header-icon:hover{
-    fill: #69bfd3!important; 
+    fill: #4d5253!important;
+    cursor: pointer;
   }
 
   .white-icon{

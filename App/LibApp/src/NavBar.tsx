@@ -2,8 +2,9 @@ import {  Col } from 'react-bootstrap';
 import {useLocation, Link } from 'react-router-dom';
 import "./NavBar.css"
 import { useState, useEffect } from 'react';
+import LogoutIcon from "./assets/logout.svg?react"
 
-const NavigationBar = () => {
+const NavigationBar = (props:{logout : () => void}) => {
 
     const location = useLocation();
     const [currentRoute, setCurrentRoute] = useState(location.pathname.toLowerCase());
@@ -16,7 +17,8 @@ const NavigationBar = () => {
         <>
         <Col className="left-sidebar">
             <div className="profile-info">
-              Profile Info
+              <p>TODO Profile info</p>
+              <p> {localStorage.getItem('username')}</p>
             </div>
             <div className="navigation-options">
               <ul>
@@ -25,6 +27,9 @@ const NavigationBar = () => {
                 <Link className='nav-element' to="/history"><li className={currentRoute.includes("history") ? "nav-element-active" : "nav-element"}>History</li></Link>
                 <Link className='nav-element' to="/stats"><li className={currentRoute.includes("stats") ? "nav-element-active" : "nav-element"}>Stats</li></Link>
               </ul>
+            </div>
+            <div className="footer">
+              <LogoutIcon onClick={props.logout} className='logoutIcon'/>
             </div>
           </Col>
         </>
