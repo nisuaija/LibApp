@@ -24,6 +24,7 @@ const Login = (props: {checkToken : () => void}) => {
                 localStorage.setItem('username', userData.data.userName);
                 localStorage.setItem('isAdmin', userData.data.isAdmin);
                 localStorage.setItem('userID', userData.data.userID);
+                localStorage.setItem('localLibrary', "2/Vaarakirjastot/JOE/JOE/");
             }
             catch(error)
             {

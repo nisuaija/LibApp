@@ -1,13 +1,11 @@
 .SearchContainer {
     position: absolute;
-    z-index: 1;
+    z-index: 9;
     width: 600px;
     height: 650px;
     margin: auto;
-    left: 250px;
-    right: 0;
     text-align: center;
-    
+    left: calc(50% - 300px); /* Position the left of the element at the horizontal center */
 }
 
 .loadingGif {
@@ -20,7 +18,7 @@
 
 .SearchPopUp {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
-    z-index: 2;
+    z-index: 10;
     width: 600px;
     height: 150px;
     background-color: #121317;
@@ -30,7 +28,7 @@
 
 .SearchPopUp-Result{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
-    z-index: 2;
+    z-index: 10;
     width: 600px;
     height: 350px;
     background-color: #5B7B82;
@@ -44,7 +42,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
-    z-index: 2;
+    z-index: 10;
     width: 600px;
     height: 150px;
     background-color: #121317;

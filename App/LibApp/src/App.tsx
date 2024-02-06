@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
-import './App.css';
-import './login.css';
+import './css/App.css';
+import './css/login.css';
 import { Container, Row, Col} from 'react-bootstrap';
 import Wishlist from './wishlist';
 import Currentreads from './currentreads';

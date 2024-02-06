@@ -1,12 +1,12 @@
-import "./GridComponent.css"
+import "./css/GridComponent.css"
+import { userBook } from "./wishlist";
+import GridBook from "./GridBook";
 
-const GridComponent = (props: {books: string[]}) => {
+const GridComponent = (props: {books: userBook[], refresh: () => void}) => {
     return(<>
         <div className="row grid">
             {props.books.map((e, index)=> {
-                return(<div key={index} className="col-md-2">
-                <p>{e}</p>
-            </div>);
+                return(<GridBook refresh={props.refresh} userbook={e} key={index} />);
             })}      
         </div>
     </>);

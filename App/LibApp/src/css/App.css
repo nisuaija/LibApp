@@ -58,6 +58,9 @@
     overflow-y: auto;
     padding: 5%;
     padding-top: 2.5%;
+    backdrop-filter: blur(4px);
+    background-image: url('./assets/wishlist.png');
+    background-size: cover;
   }
 
   .header-icon{
@@ -68,7 +71,20 @@
     height: auto;
   }
 
-  .header-icon:hover{
+  .header-icon2{
+    position: absolute;
+    z-index: 5;
+    right: 55px;
+    width: 35px;
+    height: auto;
+  }
+
+ .header-icon:hover{
+    fill: #4d5253!important;
+    cursor: pointer;
+  }
+
+  .header-icon2:hover{
     fill: #4d5253!important;
     cursor: pointer;
   }

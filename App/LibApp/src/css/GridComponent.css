@@ -1,0 +1,78 @@
+.grid{
+    padding-top: 25px;
+    row-gap: 50px;
+    justify-content: flex-start;
+}
+
+.cover {
+    height: 235px;
+    width: 150px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    margin-left: 25px;
+}
+
+.coverContainer {
+    display: flex;
+    position: relative;
+    width: 200px;
+    height: 285px;
+    background-color: #101011;
+    align-items: center;
+    cursor: pointer;
+}
+
+.coverContainer-expanded {
+    display: flex;
+    position: relative;
+    width: 480px;
+    height: 285px;
+    background-color: #5B7B82;
+    align-items: center;
+    cursor: pointer;
+    border: solid 4px #6d96a0;
+}
+
+.xButton {
+    width: 35px;
+    position: absolute;
+    z-index: 2;
+    top: -15px;
+    right: -15px;
+}
+
+
+.xButton:hover
+{
+    cursor: pointer;
+    opacity: 75%;
+}
+
+.infoWindow
+{
+    margin-top: 0px;
+    padding: 5%;
+    margin-left: 35px;
+    width: 250px;
+    line-height: 0.2;
+}
+
+.rightText{
+    text-align: right;
+}
+
+.leftText{
+    text-align: left;
+    font-size: 14px;
+    color: #242627;
+}
+
+.title {
+    position: absolute;
+    text-align: left;
+    top: 10px;
+
+    line-height: 1;
+}
+
+

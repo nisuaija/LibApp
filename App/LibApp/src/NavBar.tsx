@@ -1,6 +1,6 @@
 import {  Col } from 'react-bootstrap';
 import {useLocation, Link } from 'react-router-dom';
-import "./NavBar.css"
+import "./css/NavBar.css"
 import { useState, useEffect } from 'react';
 import LogoutIcon from "./assets/logout.svg?react"
 

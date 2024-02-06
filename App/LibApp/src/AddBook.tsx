@@ -1,7 +1,7 @@
 /// <reference types="vite-plugin-svgr/client" />
 
-import "./AddBook.css";
-import "./App.css";
+import "./css/AddBook.css";
+import "./css/App.css";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
@@ -9,6 +9,7 @@ import SearchIcon from './assets/Search.svg?react';
 import { useState } from "react";
 import axios from "axios";
 import BookData from "./BookData";
+import { v4 as uuidv4 } from 'uuid';
 
 export interface book 
 {
@@ -18,16 +19,6 @@ export interface book
     isbn : string,
     pages : number,
     title : string
-}
-
-interface userBook 
-{
-    finna_ID: string,
-    dueDate: Date,
-    startDate: Date,
-    endDate: Date,
-    pagesRead: number,
-    status: string
 }
 
 const AddBook = (props : {closePopUp :  () => void, getWishlisted : () => void}) =>
@@ -74,14 +65,17 @@ const AddBookToDatabase = async () => {
 
 const AddBookToWishlist = async () => {
 
-    const newUserBook : userBook =
+    const newUserBook =
     {
+        ID: uuidv4(),
         finna_ID: bookData.finna_ID,
-        dueDate: new Date("2021-03-25"),
-        startDate: new Date("2021-03-25"),
-        endDate: new Date("2021-03-25"),
+        dueDate: new Date(),
+        startDate: new Date(),
+        endDate: new Date(),
         pagesRead: 0,
-        status: "wishlist"
+        status: "wishlist",
+        Book: bookData,
+        isAvailable: false
     }
     
     try
@@ -113,7 +107,6 @@ const GetID = async () => {
         }
         catch(error)
         {
-            console.log(error);
             console.log("Searching book from Finna");
             try //If not found from database, find book from Finna.
             {

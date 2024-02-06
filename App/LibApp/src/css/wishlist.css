@@ -1,0 +1,26 @@
+.gridContainer{
+    display: flex;
+    width: calc(100% - 163px);
+}
+
+.bookmark-available
+{
+    position: absolute;
+    top: -2px;
+    width: 40px;
+    height: auto;
+    fill: rgb(96, 151, 93);
+    z-index: 2;
+    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
+}
+
+.bookmark-notAvailable
+{
+    position: absolute;
+    top: -2px;
+    width: 40px;
+    height: auto;
+    fill: rgb(156, 46, 46);
+    z-index: 2;
+    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
+}
