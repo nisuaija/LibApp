@@ -1,0 +1,33 @@
+.popup{
+    position: absolute;
+    z-index: 5;
+    width: 500px;
+    height: 175px;
+    top: 10%;
+    background-color: #121317;
+    right: calc(50% - 250px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.x
+{
+    position: absolute;
+    right: 5px;
+    top: 20px;
+}
+
+.dateinput{
+    width: 300px;
+    margin-left: 20px;
+}
+
+.btnAdd {
+    height: 35px;
+    background-color:  #5B7B82;
+    border: 0;
+}
+
+.btnAdd:hover{
+    background-color:  #4a6166;
+  }

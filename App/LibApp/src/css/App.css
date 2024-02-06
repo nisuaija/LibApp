@@ -53,13 +53,13 @@
   .content-page {
     background-color: #1B1C21;
     min-height: 95vh;
-    border: 2px solid #1b1b1b;
+    border: 2px solid #131313;
     box-sizing: border-box;
     overflow-y: auto;
     padding: 5%;
     padding-top: 2.5%;
     backdrop-filter: blur(4px);
-    background-image: url('./assets/wishlist.png');
+    background-image: url('../assets/wishlist.png');
     background-size: cover;
   }
 

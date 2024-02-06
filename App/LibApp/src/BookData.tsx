@@ -2,7 +2,6 @@ import { Col, Row } from "react-bootstrap"
 import "./css/BookData.css"
 import {book} from "./AddBook"
 
-
 const BookData = (props : {data : book, failed : boolean}) => {
     return(
         <>

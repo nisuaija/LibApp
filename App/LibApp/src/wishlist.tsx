@@ -7,6 +7,7 @@ import GridComponent from "./GridComponent";
 import axios from "axios";
 import Refresh from './assets/Refresh.svg?react';
 import "./css/wishlist.css";
+import BlurLayer from "./BlurLayer";
 
 export interface userBook 
 {
@@ -17,7 +18,7 @@ export interface userBook
     endDate: Date,
     pagesRead: number,
     status: string,
-    book: book,
+    book: book | null,
     isAvailable: boolean;
 }
 
@@ -42,7 +43,10 @@ const Wishlist = () => {
             const list: userBook[] = [];
 
             for(const x of userData.data)
+            {
+                if(x.status === "wishlist")
                 list.push(x);
+            }
 
             list.sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
             list.sort((a, b) => {
@@ -101,8 +105,11 @@ const Wishlist = () => {
             <AddIcon onClick={() => setShowAddBook(true)} className="white-icon header-icon"/>
         </div>
         <div className="content-page">
-            { showAddBook &&
+            {showAddBook && 
+            <BlurLayer/>}
+            { showAddBook &&<>
             <AddBook getWishlisted={GetWishlistedBooks} closePopUp={() => setShowAddBook(false)}/>
+            </>
             }
             <div style={{display: "flex", justifyContent: "center"}}>
             <div className="gridContainer">
@@ -112,6 +119,7 @@ const Wishlist = () => {
             </div>
             </div>
         </div>
+
         </>
     )
 }

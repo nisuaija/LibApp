@@ -50,7 +50,7 @@
 
 .infoWindow
 {
-    margin-top: 0px;
+    margin-top: 40px;
     padding: 5%;
     margin-left: 35px;
     width: 250px;
@@ -73,6 +73,17 @@
     top: 10px;
 
     line-height: 1;
+}
+
+.AddToCurrentReads{
+    margin-top: 20px;
+    margin-left: 18px;
+    background-color: #242627;
+    border: 0;
+    justify-self: center;
+}
+.AddToCurrentReads:hover{
+    background-color: #708d9c;
 }
 
 

@@ -2,11 +2,13 @@ import AccountCircle from "./assets/accountCircle.svg?react";
 import Button from "react-bootstrap/Button";
 import axios, { AxiosError } from "axios";
 import { FormEvent, useState } from "react";
+import CreateAccount from "./CreateAccount";
 const Login = (props: {checkToken : () => void}) => {
 
     const [username, SetUsername] = useState("");
     const [password, SetPassword] = useState("");
     const [errorMessage, SetErrorMessage] = useState("");
+    const [createAccount, setCreateAccount] = useState(false);
 
     const TryLogIn = async (event : FormEvent) =>
     {
@@ -45,6 +47,7 @@ const Login = (props: {checkToken : () => void}) => {
 
     return (
         <>
+        { !createAccount ?
         <div className="login">
             <div className="loginText">
                 <AccountCircle className="accountSVG"/>
@@ -60,11 +63,14 @@ const Login = (props: {checkToken : () => void}) => {
                     <label className="label mb-2 mt-4" htmlFor="password">Password</label>
                     <input value={password} onChange={(e) => SetPassword(e.target.value)} name="password" type="password" className="inputField"/>
                 </div>
-                </form>
-                <Button type="submit" onClick={TryLogIn} className="buttonLogIn mt-4">Login</Button>
-                <p><a href="">Sign up</a></p>
+                <Button type="submit" className="buttonLogIn mt-4">Login</Button>
+                </form>       
+                <p onClick={()=>setCreateAccount(true)} className="signInButton"><u>Sign up</u></p>
             </div>
         </div>
+        :
+        <CreateAccount login={()=>setCreateAccount(false)}/>
+        }
         </>
     )
 }

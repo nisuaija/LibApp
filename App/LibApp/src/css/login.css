@@ -15,6 +15,16 @@
     z-index: 100;
 }
 
+.blurLayerClear{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(8px);
+    z-index: 5;
+}
+
 .loginLayer{
     position: fixed;
     height: 100vh;
@@ -81,6 +91,13 @@
     background-color:  #475f64;
 }
 
-a{
-    color: #4f7781;;
+.signInButton
+{
+    color: #4f7781;
+}
+
+.signInButton:hover
+{
+    cursor: pointer;
+    color: #d8dcdd;
 }
