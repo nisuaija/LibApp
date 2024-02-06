@@ -3,6 +3,7 @@ using System;
 using LibAppApi.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LibAppApi.Migrations
 {
     [DbContext(typeof(BooksContext))]
-    partial class BooksContextModelSnapshot : ModelSnapshot
+    [Migration("20240205092330_AddBookField")]
+    partial class AddBookField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,7 +97,7 @@ namespace LibAppApi.Migrations
 
             modelBuilder.Entity("LibAppApi.Models.userBook", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<string>("finna_ID")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("dueDate")
@@ -102,13 +105,6 @@ namespace LibAppApi.Migrations
 
                     b.Property<DateTime>("endDate")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("finna_ID")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool>("isAvailable")
-                        .HasColumnType("boolean");
 
                     b.Property<int>("pagesRead")
                         .HasColumnType("integer");
@@ -123,9 +119,7 @@ namespace LibAppApi.Migrations
                     b.Property<string>("userID")
                         .HasColumnType("text");
 
-                    b.HasKey("ID");
-
-                    b.HasIndex("finna_ID");
+                    b.HasKey("finna_ID");
 
                     b.HasIndex("userID");
 
@@ -153,8 +147,7 @@ namespace LibAppApi.Migrations
 
                     b.HasOne("LibAppApi.Models.User", null)
                         .WithMany("userBooks")
-                        .HasForeignKey("userID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("userID");
 
                     b.Navigation("book");
                 });

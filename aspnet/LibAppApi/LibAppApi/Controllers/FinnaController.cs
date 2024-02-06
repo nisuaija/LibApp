@@ -171,7 +171,11 @@ namespace LibAppApi.Controllers
                     if (int.TryParse(Regex.Match(physicalInfo ?? "", @"\d+").Value, out int pageCount))
                         pages = pageCount;
 
-                    return Ok(new Book(id, title, thumbnail, author, pages, isbn));
+
+                    Book newBook = new Book();
+                    newBook.finna_ID = id; newBook.title = title; newBook.image = thumbnail; newBook.author = author; newBook.pages = pages; newBook.ISBN = isbn;
+
+                    return Ok(newBook);
                 }
                 else
                 {

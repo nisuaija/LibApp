@@ -12,14 +12,9 @@ namespace LibAppApi.Models
         public int pages { get; set; }
         public string ISBN { get; set; }
 
-        public Book(string finna_ID, string title, string image, string author, int pages, string iSBN)
+        public Book()
         {
-            this.finna_ID = finna_ID;
-            this.title = title;
-            this.image = image;
-            this.author = author;
-            this.pages = pages;
-            ISBN = iSBN;
+
         }
     }
 }
