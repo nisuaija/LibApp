@@ -3,9 +3,9 @@
     z-index: 9;
     width: 600px;
     height: 650px;
-    margin: auto;
     text-align: center;
-    left: calc(50% - 300px); /* Position the left of the element at the horizontal center */
+    top: 10%;
+    left: calc(50% - 175px);
 }
 
 .loadingGif {
@@ -59,6 +59,7 @@
 .x {
     height: 30px;
     position: absolute;
+    z-index: 9999;
     margin-left: 43%;
     margin-top: -3%;
 }

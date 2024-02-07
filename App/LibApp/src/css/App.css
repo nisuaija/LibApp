@@ -43,6 +43,7 @@
     max-height: 50px;
     background-color: #121317;
     padding: 5px;
+    padding-left: 260px;
   }
 
   .header-text {
@@ -61,6 +62,7 @@
     backdrop-filter: blur(4px);
     background-image: url('../assets/wishlist.png');
     background-size: cover;
+    padding-left: 350px;
   }
 
   .header-icon{

@@ -1,0 +1,189 @@
+.elementContainer
+{
+    background-color: #101011;
+    height: 350px;
+    width: 1450px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+    margin: auto;
+}
+
+.elementCover
+{
+    height: 235px;
+    width: 150px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.elementCoverContainer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.elementBookDataContainer
+{
+    height: 100%;
+    padding: 40px;
+}
+/* For WebKit-based browsers (Chrome, Safari, etc.) */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Optional */
+}
+
+/* For Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.elementCounterContainer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5B7B82;
+    height: 100%;
+}
+
+.barContainer
+{
+    height: 250px;
+    width: 250px;
+}
+
+.progressInputs
+{
+    position: absolute;
+    width: 200px;
+    height: 100px;
+}
+
+.elementInputfieldLeft
+{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 30px;
+    background-color: rgba(245, 222, 179, 0);
+    border: none;
+    color: whitesmoke;
+}
+.elementInputfieldRight
+{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 30px;
+    background-color: rgba(245, 222, 179, 0);
+    border: none;
+    color: whitesmoke;
+}
+
+.elementLeftText
+{
+    display: inline-block;
+    color: rgb(148, 148, 148);
+    text-align: left !important;
+}
+
+.elementRightText
+{
+    float: right;
+}
+
+.separator
+{
+    position: absolute;
+    background-color: #2a2a2c;
+    height: 75px;
+    width: 2px;
+}
+
+.separatorHor
+{
+    position: absolute;
+    background-color: #4c5a5f;
+    height: 2px;
+    width: 300px;
+}
+
+.progressText
+{
+    position: absolute;
+    margin-top: 175px;
+    font-size: 14px;
+}
+
+.elementCounterDataContainer
+{
+    padding-right: 50px;
+    background-color: #5B7B82;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dataContainer
+{
+    width: 100%;
+    text-align: left;
+}
+
+.dataTop
+{
+    font-weight: 100;
+    font-size: 18px;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+}
+.dataBottom
+{
+    padding-top: 25px;
+    font-weight: 100;
+    font-size: 20px;
+    height: 125px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.dataBottom p {
+    margin: 0; /* Remove default margins */
+}
+
+.dataTop p {
+    margin: 0; /* Remove default margins */
+}
+.dataTop label {
+   padding-right: 65px;
+}
+
+.dateInput
+{
+    width: 150px;
+}
+
+.xBtn {
+    height: 30px;
+    width: auto;
+    position: absolute;
+    margin-top: -300px;
+    margin-left: 350px;
+}
+
+.xBtn:hover
+{
+    cursor: pointer;
+    opacity: 50%;
+}

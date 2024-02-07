@@ -1,4 +1,6 @@
 import "./css/App.css";
+import "./css/CurrentReads.css"
+import CurrentReadsList from "./currentreads-list";
 
 const Currentreads = () => {
     return (
@@ -7,7 +9,7 @@ const Currentreads = () => {
               Current Reads
         </div>
         <div className="content-page">
-              This is currentreads
+            <CurrentReadsList/>
         </div>
         </>
     )

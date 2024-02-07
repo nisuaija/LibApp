@@ -26,6 +26,7 @@ const GridComponent = (props: {books: userBook[], refresh: () => void}) => {
     const AddBook = async (date : Date) =>{
         //Moves book to Current Reads
         userBookToMoved.dueDate = date;
+        userBookToMoved.startDate = new Date;
         userBookToMoved.status = "current";
 
         try{

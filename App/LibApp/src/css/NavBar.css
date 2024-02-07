@@ -15,12 +15,17 @@
 
   
 .left-sidebar {
-    position: relative;
+    position: fixed;
     background-color: #121317;
     padding: 20px;
     min-width: 250px;
     max-width: 250px;
     padding: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    z-index: 5;
   }
   
   .profile-info {
