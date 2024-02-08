@@ -1,4 +1,5 @@
 import "./css/App.css";
+import HistoryList from "./history-list";
 
 const History = () => {
     return (
@@ -7,7 +8,7 @@ const History = () => {
             History
         </div>
         <div className="content-page">
-              This is History
+              <HistoryList/>
         </div>
         </>
     )

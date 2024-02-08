@@ -187,3 +187,25 @@ input[type=number] {
     cursor: pointer;
     opacity: 50%;
 }
+
+.checkMark
+{
+    fill: greenyellow;
+    position: absolute;
+    height: 50px;
+    width: auto;
+    margin-top: 300px;
+    margin-left: 350px;
+}
+
+.checkMark:hover
+{
+    fill: rgb(110, 161, 33);
+    cursor: pointer;
+}
+
+.popup
+{
+    position: absolute;
+    right: calc(50% - 370px);
+}

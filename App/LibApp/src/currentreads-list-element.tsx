@@ -4,6 +4,9 @@ import 'react-circular-progressbar/dist/styles.css';
 import { userBook } from "./wishlist";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Checkmark from "./assets/checkmark.svg?react";
+import BlurLayer from "./BlurLayer";
+import FinishBook from "./FinishBook";
 
 const CurrentReadsListElement = (props: {book : userBook, refresh : () => void}) => {
 
@@ -13,6 +16,7 @@ const CurrentReadsListElement = (props: {book : userBook, refresh : () => void})
     const [progress, setProgress] = useState(0);
     const [initialRender, setInitialRender] = useState(true);
     const [minimumPace, setMinimumPace] = useState(0);
+    const [showFinish, setShowFinish] = useState(false);
 
     useEffect(() => {
         GetProgress();
@@ -43,7 +47,7 @@ const CurrentReadsListElement = (props: {book : userBook, refresh : () => void})
         props.book.pagesRead = pagesRead;
         props.book.startDate = new Date(startDate);
         props.book.dueDate = new Date(dueDate);
-
+        
         console.log(props.book);
 
         try{
@@ -54,6 +58,14 @@ const CurrentReadsListElement = (props: {book : userBook, refresh : () => void})
         {
             console.log(error);
         }
+    }
+
+    const HandleMarkAsFinished = async () =>
+    {
+        props.book.status = "finished";
+        await SaveProgress();
+        setShowFinish(false);
+        props.refresh();
     }
 
     const removeUserbook = async () => {
@@ -112,7 +124,8 @@ const CurrentReadsListElement = (props: {book : userBook, refresh : () => void})
                     <p className="progressText">Progress</p>
                 </Col>
                 <Col className="col-3 elementCounterDataContainer ">
-                <img src="X.png" onClick={removeUserbook} className="xBtn"></img>  
+                <img src="X.png" onClick={removeUserbook} className="xBtn"></img>
+                <Checkmark className="checkMark" onClick={() =>setShowFinish(true)}/>
                     <div className="separatorHor mt-2"></div>
                     <div className="dataContainer mt-2">
                         <div className="dataTop">
@@ -125,11 +138,17 @@ const CurrentReadsListElement = (props: {book : userBook, refresh : () => void})
                         </div>
                         <div className="dataBottom">
                             <p>Minimum pace:</p>
-                            <p><span style={{color : "#CAF4CB"}}>{minimumPace}</span> pages per day</p>
+                            <p><span style={{color : "yellowgreen"}}>{minimumPace}</span> pages per day</p>
                         </div>
                     </div>
                 </Col>
             </Row>
+            {showFinish &&
+            <>
+                <BlurLayer/>
+                <FinishBook refresh={HandleMarkAsFinished} closeWindow={() => setShowFinish(false)} book={props.book}/>
+            </>
+            }
     </>);
 }
 
