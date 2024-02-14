@@ -8,6 +8,7 @@ import axios from "axios";
 import Refresh from './assets/Refresh.svg?react';
 import "./css/wishlist.css";
 import BlurLayer from "./BlurLayer";
+import { Review } from "./AddReview";
 
 export interface userBook 
 {
@@ -20,6 +21,7 @@ export interface userBook
     status: string,
     book: book | null,
     isAvailable: boolean;
+    review: Review | null
 }
 
 const Wishlist = () => {

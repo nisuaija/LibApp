@@ -52,15 +52,20 @@
 
 .infoWindow
 {
-    margin-top: 40px;
+    margin-top: 0px;
     padding: 5%;
-    margin-left: 35px;
+    margin-left: 10px;
     width: 250px;
-    line-height: 0.2;
+    line-height: 1;
 }
 
 .rightText{
     text-align: right;
+    position: absolute;
+    right: 0;
+    color: whitesmoke;
+    padding-right: 15px;
+    font-size: 14px;
 }
 
 .leftText{
@@ -78,8 +83,10 @@
 }
 
 .AddToCurrentReads{
-    margin-top: 20px;
-    margin-left: 18px;
+    position: absolute;
+    left: 253px;
+    bottom: 20px;
+    font-size: 14px;
     background-color: #242627;
     border: 0;
     justify-self: center;
@@ -88,4 +95,18 @@
     background-color: #708d9c;
 }
 
+.wishlistRating
+{
+    margin-left: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    border-radius: 25px;
+    flex-direction: column;
+}
 
+.wishlistRating:hover
+{
+    background-color: rgba(240, 248, 255, 0.267);
+}

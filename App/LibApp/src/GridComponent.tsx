@@ -17,7 +17,8 @@ const GridComponent = (props: {books: userBook[], refresh: () => void}) => {
         pagesRead: 0,
         status: '',
         isAvailable: false,
-        book: null
+        book: null,
+        review : null
     }
 
     const [showAddPopUp, setShowAddPopUp] = useState(false);

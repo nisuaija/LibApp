@@ -123,9 +123,11 @@ namespace LibAppApi.Controllers
             try
             {
                 var userWithBooks = _context.Users
-                                    .Include(u => u.userBooks)
-                                    .ThenInclude(ub => ub.book) // Include the Book navigation property
-                                    .FirstOrDefault(u => u.userID == userID);
+                     .Include(u => u.userBooks)
+                         .ThenInclude(ub => ub.book) // Include the Book navigation property
+                     .Include(u => u.userBooks)
+                         .ThenInclude(ub => ub.review) // Include the Review navigation property
+                     .FirstOrDefault(u => u.userID == userID);
 
                 if (userWithBooks == null)
                     return NotFound("User not found");

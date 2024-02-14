@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BlurLayer from "./BlurLayer";
 import { userBook } from "./wishlist";
 import HistoryListElementWindow from "./history-list-element-window";
 import axios from "axios";
+import Rating from "@mui/material/Rating/";
+import StarIcon from "@mui/icons-material/Star"
 
 const GetCorrectFormatDate = (date : string) =>
 {
@@ -13,8 +15,24 @@ const GetCorrectFormatDate = (date : string) =>
 }
 
 
-
 const HistoryListElement = (props: {book : userBook, refresh: () => void}) => {
+
+    const [score, setScore] = useState(0);
+
+    useEffect(() => {
+        searchReview();
+        // eslint-disable-next-line
+    }, [props.book]);
+
+    const searchReview = async () => {
+        if(props.book.review != null)
+        {
+            console.log("done")
+            setScore(props.book.review.score);
+        }
+        else
+            setScore(0);
+    }
 
     const removeUserbook = async () => {
         
@@ -45,7 +63,13 @@ const HistoryListElement = (props: {book : userBook, refresh: () => void}) => {
         <td>{props.book.book?.author}</td>
         <td className="text-center">{props.book.book?.pages}</td>
         <td className="text-center">{GetCorrectFormatDate(props.book.endDate.toString())}</td>
-        <td className="text-center">X X X X X</td>
+        <td className="text-center">
+            { score !== 0 ?
+            <Rating readOnly name="half-rating"  value={score} precision={0.5} emptyIcon={<StarIcon style={{ fill : "black", height: "25px", width:"25px"  }} fontSize="inherit" />} icon={<StarIcon style={{fill : "#5B7B82", height: "25px", width:"25px" }} fontSize="inherit" />}/>
+            :
+            <p>No review</p>
+            }
+        </td>
     </tr>
     { openWindow &&
     <>

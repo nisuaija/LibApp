@@ -3,11 +3,13 @@ import "./css/history-list.css"
 import HistoryListElement from "./history-list-element";
 import { userBook } from "./wishlist";
 import axios from "axios";
+import SortIcon from "./assets/sortIcon.svg?react";
+
 
 const HistoryList = () => {
 
     const [userBooks, setUserBooks] = useState<userBook[]>([]);
-    const [isAscending, setIsAscending] = useState<boolean>(true);
+    const [isAscending, setIsAscending] = useState<boolean>(false);
     const [lastSort, SetLastSort] = useState("4");
     
 //#region Sorting Algorithms
@@ -31,11 +33,17 @@ const HistoryList = () => {
         return sortedBooks;
     }
 
+    const SortByRating = (books: userBook[]) : userBook[] => {
+        const sortedBooks = [...books].sort((a, b) => (b.review?.score || 0) - (a.review?.score || 0)); 
+        return sortedBooks;
+    }
+
     const [sortingMethod, setSortingMethod] = useState<(books: userBook[]) => userBook[]>(() => SortByDate);
 //#endregion
 
     useEffect(() => {
         GetUserbooks();
+        // eslint-disable-next-line
     }, [sortingMethod, isAscending]);
 
     const GetUserbooks = async () => {
@@ -46,14 +54,13 @@ const HistoryList = () => {
             for(const x of userData.data)
             {
                 if(x.status === "finished")
-                list.push(x);
+                    list.push(x);
             }
 
             let sortedBooks = sortingMethod(list);
 
             if (!isAscending)
                 sortedBooks = sortedBooks.reverse();
-
             setUserBooks(sortedBooks);
         }
         catch(error)
@@ -65,7 +72,6 @@ const HistoryList = () => {
     const handleSortingMethodChange = (sortMethod: (books: userBook[]) => userBook[], sort : string) => {
         // Toggle the sorting order if the same button is clicked twice
         if (sort === lastSort) {
-            console.log("yay0");
             setIsAscending(!isAscending);
         } else {
             setIsAscending(true);
@@ -78,11 +84,11 @@ const HistoryList = () => {
             <table>
                 <thead>
                 <tr>
-                    <th onClick={() => { handleSortingMethodChange(SortByTitle, "1");}}>Title</th>
-                    <th onClick={() => handleSortingMethodChange(SortByAuthor, "2")}>Author</th>
-                    <th className="text-center" onClick={() => handleSortingMethodChange(SortByPages, "3")}>Pages</th>
-                    <th className="text-center" onClick={() => handleSortingMethodChange(SortByDate, "4")}>Read Date</th>
-                    <th className="text-center">My Review</th>
+                    <th onClick={() => handleSortingMethodChange(SortByTitle, "1")}>Title<SortIcon className="white-icon"/></th>
+                    <th onClick={() => handleSortingMethodChange(SortByAuthor, "2")}>Author<SortIcon className="white-icon"/></th>
+                    <th className="text-center" onClick={() => handleSortingMethodChange(SortByPages, "3")}>Pages<SortIcon className="white-icon"/></th>
+                    <th className="text-center" onClick={() => handleSortingMethodChange(SortByDate, "4")}>Read Date<SortIcon className="white-icon"/></th>
+                    <th className="text-center" onClick={() => handleSortingMethodChange(SortByRating, "5")}>My Review<SortIcon className="white-icon"/></th>
                 </tr>
                 </thead>
                 <tbody>

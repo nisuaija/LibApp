@@ -1,0 +1,191 @@
+.fullReview
+{
+    z-index: 10;
+    position: absolute;
+    width: 1200px;
+    height: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+    background-color: #121317;
+    top: 0.1%;
+    left: calc(50% - 872px);
+}
+
+.xPos
+{
+    top: 50px;
+    right: 15px;
+}
+
+.fullReviewUpperBlock
+{
+    height: 20%;
+}
+
+.avatarFull
+{
+    left: 30px;
+    top: 25px;
+}
+
+.ratingFull
+{
+    left: 40px;
+    top: 30px;
+}
+
+.fullReviewUsername
+{
+    position: absolute;
+    left: 140px;
+    top: 65px;
+}
+
+
+.fullReviewTextBlock
+{
+    height: 70%;
+
+}
+
+.fullReviewTextBlock textarea
+{
+    height: 100%;
+    width: 100%;
+    padding: 2.5%;
+    padding-top: 0;
+    resize: none;
+    background-color: #48517500;
+    color: whitesmoke;
+    border: none;
+    color-scheme: dark;
+}
+
+
+.fullReviewFooterBlock
+{
+    height: 10%;
+}
+
+.fullReviewAccountBlock
+{
+    width: 30%;
+    height: 100%;
+}
+
+.fullLeftText
+{
+    position: absolute;
+    text-align: left;
+    left: 30px;
+    bottom: 0;
+    color: #709ea8;
+}
+
+.fullLeftText:hover
+{
+    color: #506e75;
+    cursor: pointer;
+}
+
+.fullRightText
+{
+    position: absolute;
+    text-align: right;
+    right: 30px;
+    bottom: 0;
+}
+
+.flagIcon
+{ 
+    position: absolute;
+    height: 30px;
+    width: auto;
+    fill: rgb(196, 72, 72);
+    right: 5px;
+}
+
+.fullReport
+{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
+    right: 60px;
+    top: 9px;
+}
+
+.fullReport:hover
+{
+    background-color: #40404118;
+    cursor: pointer;
+}
+
+.fullReport p
+{
+    position: absolute;
+    color: #404041;
+    text-align: left;
+    left: 12px;
+    top: 8px;
+}
+
+.fullEdit
+{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    height: 40px;
+    width: 80px;
+    left: calc(50% - 40px);
+    bottom: 10px;
+}
+
+.fullEdit:hover
+{
+    background-color: #40404118;
+    cursor: pointer;
+}
+
+.editIcon
+{
+    position: absolute;
+    height: 25px;
+    width: auto;
+    fill: rgb(218, 218, 218);
+    right: 8px;
+}
+
+.fullEdit p
+{
+    position: absolute;
+    color: #709ea8;
+    text-align: left;
+    left: 12px;
+    top: 10px;
+}
+
+.reviewEdit
+{
+    position: absolute;
+    top: -100px;
+    right: calc(50% + 255px);
+    bottom: 0;
+}
+
+.removeReview
+{
+    position: absolute;
+    right: 20px;
+    bottom: -50px;
+    color: #b83535;
+}
+
+.removeReview:hover{
+    color: rgb(100, 41, 41);
+    cursor: pointer;
+}

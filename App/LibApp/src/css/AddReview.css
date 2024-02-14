@@ -1,0 +1,123 @@
+.reviewContainer
+{
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 250px;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+}
+
+.reviewPopUp{
+    position: absolute;
+    height: 800px;
+    width: 800px;
+    background-color: black;
+    margin-top: 40px;
+    background-color: #121317;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.titleContainer
+{
+    background-color: #5B7B82;;
+    width: 100%;
+    height: 125px;
+    padding: 5%;
+    padding-left: 15%;
+    padding-right: 15%;
+    font-weight: 300;
+    font-size: 20px;
+
+}
+
+.X
+{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 35px;
+}
+
+.X:hover
+{
+    opacity: 50%;
+    cursor: pointer;
+}
+
+.textboxContainer
+{
+    width: 100%;
+    height: 45%;
+    margin-top: 25px;
+}
+
+.textboxContainer textarea
+{
+    background-color: #12131700;
+    resize: none;
+    width: 90%;
+    height: 100%;
+    padding: 2%;
+    color: whitesmoke;
+    border: 2px solid  #5B7B82;
+}
+
+.privateContainer
+{
+    padding-left: 5%;
+    display: flex;
+    height: 10%;
+    align-items: center;
+    text-align: left;
+}
+.privateContainer input
+{
+    height: 15px;
+    width: 15px;
+}
+.privateContainer label
+{
+    padding-left: 10px;
+}
+.privateContainer p
+{
+    padding-left: 50px;
+    padding-top: 15px;
+    color: rgb(202, 201, 201);
+}
+
+.ratingContainer
+{
+    height: 18%;
+    padding: 1.5%;
+}
+
+.buttonContainer
+{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding-bottom: 50px;
+}
+.buttonContainer Button
+{
+    width: 300px;
+}
+
+.buttonSubmit
+{
+    background-color: #5B7B82;
+    border: none;
+}
+.buttonSubmit:hover
+{
+    background-color: #3a4d52;
+    border: none;
+}

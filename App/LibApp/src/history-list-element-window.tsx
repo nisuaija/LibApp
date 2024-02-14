@@ -1,8 +1,11 @@
-import { InputGroup } from "react-bootstrap";
+import { Button, InputGroup } from "react-bootstrap";
 import "./css/history-list-element-window.css"
 import { userBook } from "./wishlist";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ReviewPreview from "./ReviewPreview";
+import BlurLayer from "./BlurLayer";
+import AddReview from "./AddReview";
 
 type properties =
 {
@@ -19,6 +22,7 @@ const HistoryListElementWindow = (props : properties) =>
     const [initialRender, setInitialRender] = useState(true);
     const [inDays, setInDays] = useState(0);
     const [pace, setPace] = useState(0);
+    const [showAddReview, setShowAddReview] = useState(false);
 
     useEffect(() => {
         if(!initialRender)
@@ -27,6 +31,7 @@ const HistoryListElementWindow = (props : properties) =>
             setInitialRender(false);
 
         UpdateStats();
+        // eslint-disable-next-line
     }, [startDate, endDate])
 
     const SaveProgress = async () =>
@@ -60,6 +65,13 @@ const HistoryListElementWindow = (props : properties) =>
 
     return(<>
         <div className="upperBlock">
+        { showAddReview && <>
+            <BlurLayer/>
+            <div className="reviewAdding">
+            <AddReview text="Care to leave a review? Your feedback helps fellow readers to discover great stories." book={props.book} isEdit={false} closeWindow={() => { setShowAddReview(false); props.closeWindow();}}  />
+            </div>
+        </>
+        }
             <div className="leftBlock">
                 <div className="historyDataContainer">
                     <h5 className="mb-4">{props.book.book?.title}</h5>
@@ -73,8 +85,11 @@ const HistoryListElementWindow = (props : properties) =>
                 </div>
             </div>
             <div className="rightBlock">
+            <Button className="addReviewButton" onClick={() => setShowAddReview(true)}>Add review</Button>
                 <img src="X.png" onClick={props.closeWindow} className="x"></img>
-                <p>No review found</p>
+                {props.book.review != null &&
+                <ReviewPreview book={props.book}/>
+                }                
             </div>
         </div>
         <div className="lowerBlock">
@@ -93,7 +108,7 @@ const HistoryListElementWindow = (props : properties) =>
             <div className="historySeparator"></div>
                 <p>You finished this book in <span style={{color : "yellowgreen"}}>{inDays}</span> days!</p>
                 <p>You phased thourgh the book in pace of <span style={{color : "yellowgreen"}}>{Math.round(pace)}</span> pages per day!</p>
-            </div>
+            </div>         
         </div>
         
     </>)

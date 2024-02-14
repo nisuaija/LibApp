@@ -1,3 +1,8 @@
+  :root
+  {
+    color-scheme: dark;
+  }
+  
   body {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;

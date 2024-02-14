@@ -21,5 +21,9 @@ namespace LibAppApi.Models
         [ForeignKey("finna_ID")]
         public Book book { get; set; }
 
+        [ForeignKey("reviewID")]
+        public Review? review { get; set; }
+
+
     }
 }

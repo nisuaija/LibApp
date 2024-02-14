@@ -3,6 +3,7 @@ using System;
 using LibAppApi.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LibAppApi.Migrations
 {
     [DbContext(typeof(BooksContext))]
-    partial class BooksContextModelSnapshot : ModelSnapshot
+    [Migration("20240213112128_UnrequireReview")]
+    partial class UnrequireReview
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,23 +67,20 @@ namespace LibAppApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("reviewID")
+                    b.Property<string>("ReviewID")
                         .HasColumnType("text");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("reviewID");
+                    b.HasIndex("ReviewID");
 
                     b.ToTable("Report");
                 });
 
             modelBuilder.Entity("LibAppApi.Models.Review", b =>
                 {
-                    b.Property<string>("reviewID")
+                    b.Property<string>("ID")
                         .HasColumnType("text");
-
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Finna_ID")
                         .IsRequired()
@@ -104,7 +104,7 @@ namespace LibAppApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("reviewID");
+                    b.HasKey("ID");
 
                     b.ToTable("Reviews", (string)null);
                 });
@@ -199,7 +199,7 @@ namespace LibAppApi.Migrations
                 {
                     b.HasOne("LibAppApi.Models.Review", null)
                         .WithMany("Reports")
-                        .HasForeignKey("reviewID")
+                        .HasForeignKey("ReviewID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

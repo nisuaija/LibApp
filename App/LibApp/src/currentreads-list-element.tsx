@@ -7,6 +7,7 @@ import axios from "axios";
 import Checkmark from "./assets/checkmark.svg?react";
 import BlurLayer from "./BlurLayer";
 import FinishBook from "./FinishBook";
+import AddReview from "./AddReview";
 
 const CurrentReadsListElement = (props: {book : userBook, refresh : () => void}) => {
 
@@ -17,9 +18,11 @@ const CurrentReadsListElement = (props: {book : userBook, refresh : () => void})
     const [initialRender, setInitialRender] = useState(true);
     const [minimumPace, setMinimumPace] = useState(0);
     const [showFinish, setShowFinish] = useState(false);
+    const [showAddReview, setShowAddReview] = useState(false);
 
     useEffect(() => {
         GetProgress();
+        // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
@@ -27,6 +30,7 @@ const CurrentReadsListElement = (props: {book : userBook, refresh : () => void})
             SaveProgress();
         else
             setInitialRender(false);
+        // eslint-disable-next-line
     }, [startDate, dueDate])
 
     const GetProgress = () =>
@@ -62,10 +66,11 @@ const CurrentReadsListElement = (props: {book : userBook, refresh : () => void})
 
     const HandleMarkAsFinished = async () =>
     {
+        setShowAddReview(false);
         props.book.status = "finished";
         await SaveProgress();
         setShowFinish(false);
-        props.refresh();
+        props.refresh(); 
     }
 
     const removeUserbook = async () => {
@@ -146,8 +151,11 @@ const CurrentReadsListElement = (props: {book : userBook, refresh : () => void})
             {showFinish &&
             <>
                 <BlurLayer/>
-                <FinishBook refresh={HandleMarkAsFinished} closeWindow={() => setShowFinish(false)} book={props.book}/>
+                <FinishBook refresh={() => setShowAddReview(true)} closeWindow={() => setShowFinish(false)} book={props.book}/>
             </>
+            }
+            {showAddReview &&
+            <AddReview isEdit={false} closeWindow={() => {setShowAddReview(false); HandleMarkAsFinished();}} book={props.book} text="Congratulations on finishing the book! Care to leave a review? Your feedback helps fellow readers to discover great stories."/>
             }
     </>);
 }
