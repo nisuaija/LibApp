@@ -67,6 +67,7 @@ Clicking show more button on the review window will bring up the full review. He
 - Reporting naughty reviews
 - Admin tools for receiving reports and removing users/reviews.
 - Stats view for more information about your reading history.
+- User info in the top of the left sidebar.
 
 
 
