@@ -16,7 +16,7 @@ Shows users wishlisted books from database, bookmark color indicates if the book
 ![image](https://github.com/nisuaija/LibApp/assets/57667279/8f5dcf1d-214c-42c8-b2f8-a4143efb6633)
 
 ## Wishlist 2
-Clicking a book will bring up more information
+Clicking a book will bring up more information. (Reviews not implemented fully)
 
 ![image](https://github.com/nisuaija/LibApp/assets/57667279/3d882680-06d6-41ec-a459-7906c97a7b37)
 
