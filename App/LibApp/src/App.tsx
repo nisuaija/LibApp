@@ -10,6 +10,7 @@ import History from './history';
 import Login from './Login';
 import { useEffect, useState} from 'react';
 import axios from 'axios';
+import AdminTools from './AdminTools';
 
 function App() {
 
@@ -77,6 +78,9 @@ function App() {
                     <Route path="/currentreads" element={<Currentreads />} />
                     <Route path="/history" element={<History />} />
                     <Route path="/stats" element={<Stats /> } />
+                    { localStorage.getItem("isAdmin") === "true" &&
+                    <Route path="/admintools" element={<AdminTools /> } />
+                    }
                     <Route path="/login" element={<Navigate to="/wishlist" />} />
                     <Route path="/" element={<Navigate to="/wishlist" />} />
                   </Routes>         

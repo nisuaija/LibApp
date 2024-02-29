@@ -6,6 +6,9 @@ import axios from "axios";
 import ReviewPreview from "./ReviewPreview";
 import BlurLayer from "./BlurLayer";
 import AddReview from "./AddReview";
+import Rating from "@mui/material/Rating/";
+import StarIcon from "@mui/icons-material/Star"
+import Reviews from "./Reviews";
 
 type properties =
 {
@@ -23,12 +26,16 @@ const HistoryListElementWindow = (props : properties) =>
     const [inDays, setInDays] = useState(0);
     const [pace, setPace] = useState(0);
     const [showAddReview, setShowAddReview] = useState(false);
+    const [score, setScore] = useState(0);
+    const [showReviews, setShowReviews] = useState(false);
 
     useEffect(() => {
         if(!initialRender)
             SaveProgress();
-        else
+        else{
             setInitialRender(false);
+            GetRating();
+        }
 
         UpdateStats();
         // eslint-disable-next-line
@@ -51,6 +58,12 @@ const HistoryListElementWindow = (props : properties) =>
         }
     }
 
+    const GetRating = async () =>
+    {
+        const rating = await axios.get(`http://localhost:5175/api/Review/GetAverageScoreByBook?finna_ID=${props.book.finna_ID}`);
+        setScore(Number(rating.data));
+    }
+
     const UpdateStats = () => {
         //Count days
         const differenceInMilliseconds : number = new Date(endDate).getTime() - new Date(startDate).getTime();
@@ -65,6 +78,9 @@ const HistoryListElementWindow = (props : properties) =>
 
     return(<>
         <div className="upperBlock">
+        { showReviews &&
+            <BlurLayer/>
+        }
         { showAddReview && <>
             <BlurLayer/>
             <div className="reviewAdding">
@@ -78,7 +94,11 @@ const HistoryListElementWindow = (props : properties) =>
                     <p><span className="historyElementLeftText">Author:</span><span className="elementRightText">{props.book.book?.author}</span></p>
                     <p><span className="historyElementLeftText">Pages:</span><span className="elementRightText">{props.book.book?.pages}</span></p>
                     <p><span className="historyElementLeftText">ISBN:</span><span className="elementRightText">{props.book.book?.isbn}</span></p>
-                    <p><span className="historyElementLeftText">User score:</span><span className="elementRightText">X X X X X</span></p>
+                    <p><span className="historyElementLeftText">User score:</span></p>
+                    <div className="CRwishlistRating" onClick={() => setShowReviews(true)}>
+                            <Rating readOnly name="half-rating"  value={score} precision={0.5} emptyIcon={<StarIcon style={{ fill : "black", height: "35px", width:"35px"  }} fontSize="inherit" />} icon={<StarIcon style={{fill : "white", height: "35px", width:"35px" }} fontSize="inherit" />}/>
+                            <p className="showReviewsText mt-2">Show reviews</p>
+                        </div>
                 </div>
                 <div className="historyCoverContainer">
                     <img className="historyCover" src={props.book.book?.image}></img>
@@ -88,7 +108,7 @@ const HistoryListElementWindow = (props : properties) =>
             <Button className="addReviewButton" onClick={() => setShowAddReview(true)}>Add review</Button>
                 <img src="X.png" onClick={props.closeWindow} className="x"></img>
                 {props.book.review != null &&
-                <ReviewPreview book={props.book}/>
+                <ReviewPreview isAdmin={false} fullReviewCallback={() => console.log("Fullrev")} closeWindow={props.closeWindow} book={props.book} review={props.book.review !== null ? {score: props.book.review.score, userName: props.book.review.userName, text: props.book.review.text, dateTime: props.book.review.dateTime, reviewID: "nan"} : null}/>
                 }                
             </div>
         </div>
@@ -108,9 +128,12 @@ const HistoryListElementWindow = (props : properties) =>
             <div className="historySeparator"></div>
                 <p>You finished this book in <span style={{color : "yellowgreen"}}>{inDays}</span> days!</p>
                 <p>You phased thourgh the book in pace of <span style={{color : "yellowgreen"}}>{Math.round(pace)}</span> pages per day!</p>
-            </div>         
+            </div>
         </div>
-        
+        {   (showReviews && score > 0) && <div className="reviewsHistory">
+            <Reviews closeWindow={() => setShowReviews(false)} finna={props.book.finna_ID} />
+            </div>
+        }
     </>)
 }
 

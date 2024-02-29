@@ -1,0 +1,27 @@
+.reviewsGrid{
+    display: grid;
+    position: absolute;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 500px));
+    grid-auto-rows: 275px;
+    width: 1550px;
+    height: 100%;
+    z-index: 50;
+    margin-top: -20px;
+    left: calc(50% - 615px);
+    grid-row-gap: 50px;
+}
+
+.reviewsX
+{
+    position: absolute;
+    height: 35px;
+    right: 10px;
+    top: -35px
+}
+
+.reviewsX:hover
+{
+    cursor: pointer;
+    opacity: 75%;
+}

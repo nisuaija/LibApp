@@ -9,6 +9,7 @@
 
 .previewUpperBlock
 {
+    display: flex;
     height: 40%;
 }
 
@@ -17,23 +18,20 @@
     height: 75px;
     width: 75px;
     border-radius: 50%;
-    position: absolute;
-    left: 80px;
-    top: 53px;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 
 .rating
 {
-    position: absolute;
-    left: 0px;
-    top: 25px;
+    margin-top: 30px;
+    margin-left: 20px;
 }
 
 .reviewUsername
 {
-    position: absolute;
-    left: 195px;
-    top: 102px;
+    margin-left: -168px;
+    margin-top: 65px;
 }
 
 .previewTextBlock
@@ -49,15 +47,17 @@
 
 .previewBottomBlock
 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
     height: 16%;
     padding-top: 2.5%;
 }
 
 .previewLeftText
 {
-    position: absolute;
+    padding-left: 30px;
     text-align: left;
-    left: 80px;
     color: #709ea8;
 }
 
@@ -69,8 +69,7 @@
 
 .previewRightText
 {
-    position: absolute;
     text-align: right;
-    right: 80px;
+    padding-right: 30px;
 }
 

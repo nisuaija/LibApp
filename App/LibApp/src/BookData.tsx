@@ -1,8 +1,25 @@
 import { Col, Row } from "react-bootstrap"
 import "./css/BookData.css"
 import {book} from "./AddBook"
+import Rating from "@mui/material/Rating/";
+import StarIcon from "@mui/icons-material/Star"
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const BookData = (props : {data : book, failed : boolean}) => {
+    const [score, setScore] = useState(0);
+
+    const GetRating = async () =>
+    {
+        const rating = await axios.get(`http://localhost:5175/api/Review/GetAverageScoreByBook?finna_ID=${props.data.finna_ID}`)
+        setScore(Number(rating.data));
+    }
+
+    useEffect(() => {
+        GetRating();
+         // eslint-disable-next-line
+    }, [])
+
     return(
         <>
         {props.failed == false ?
@@ -20,7 +37,7 @@ const BookData = (props : {data : book, failed : boolean}) => {
                     <p className="infoTitle">ISBN:</p>
                     <p className="infoText">{props.data.isbn}</p>
                     <p className="infoTitle">User score:</p>
-                    <p className="infoText">X X X X X</p>
+                    <Rating readOnly name="half-rating" className="addBookRating"  value={score} precision={0.5} emptyIcon={<StarIcon style={{ fill : "black", height: "30px", width:"30px"  }} fontSize="inherit" />} icon={<StarIcon style={{fill : "white", height: "30px", width:"30px" }} fontSize="inherit" />}/>
                 </Col>
             </Row>
         </div>

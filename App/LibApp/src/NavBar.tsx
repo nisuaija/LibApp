@@ -26,6 +26,9 @@ const NavigationBar = (props:{logout : () => void}) => {
                 <Link className='nav-element' to="/currentreads"><li className={currentRoute.includes("currentreads") ? "nav-element-active" : "nav-element"}>Current Reads</li></Link>
                 <Link className='nav-element' to="/history"><li className={currentRoute.includes("history") ? "nav-element-active" : "nav-element"}>History</li></Link>
                 <Link className='nav-element' to="/stats"><li className={currentRoute.includes("stats") ? "nav-element-active" : "nav-element"}>Stats</li></Link>
+                {localStorage.getItem("isAdmin") === "true" &&
+                <Link className='nav-element' to="/admintools"><li className={currentRoute.includes("admintools") ? "nav-element-active" : "nav-element"}>Admin Tools</li></Link>
+                }
               </ul>
             </div>
             <div className="footer">

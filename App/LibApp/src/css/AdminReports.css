@@ -1,0 +1,30 @@
+.reportsElement
+{  
+    display: flex;
+    background-color: black;
+    height: 275px;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.reportPreview
+{
+    background-color: #121317;
+    width: 450px;
+    height: 275px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reportRight
+{
+    background-color: #1c1c22;
+    width: 60%;
+    height: 275px;
+}
+
+

@@ -1,0 +1,59 @@
+.adminSelector{
+    display: flex;
+    margin: auto;
+    width: 1200px;
+    height: 75px;
+}
+
+.reportsSelect
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    padding-top: 10px;
+}
+
+.usersSelect
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    padding-top: 10px;
+}
+
+.usersSelect:hover
+{
+    background-color:  #ffffffb4;
+    cursor: pointer;
+}
+
+.reportsSelect:hover
+{
+    background-color: #ffffffb4;
+    cursor: pointer;
+}
+
+.adminSelected
+{
+    background-color: #5B7B82;
+}
+
+.adminSeparator
+{
+    background-color: #5B7B82;
+    margin: auto;
+    margin-top: 5px;
+    height: 2px;
+    width: 1200px;
+}
+
+.adminContent
+{
+    height: 75vh;
+    width: 1200px;
+    background-color: rgba(15, 15, 15, 0.274);
+    margin: auto;
+    overflow-y: scroll;
+}

@@ -42,6 +42,7 @@ const HistoryList = () => {
 //#endregion
 
     useEffect(() => {
+        console.log("geting");
         GetUserbooks();
         // eslint-disable-next-line
     }, [sortingMethod, isAscending]);

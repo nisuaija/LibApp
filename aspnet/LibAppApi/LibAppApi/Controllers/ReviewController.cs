@@ -183,5 +183,50 @@ namespace LibAppApi.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpPost("PostReport")]
+        public IActionResult PostReport(Report report, string reviewID)
+        {
+            try
+            {
+                var foundReview = _context.Reviews.Include(r => r.Reports).FirstOrDefault(r => r.reviewID == reviewID);
+
+                if (foundReview != null)
+                {
+                    foundReview.Reports.Add(report);
+                    _context.SaveChanges();
+                    return Ok("Report Added");
+                }
+                else
+                {
+                    return NotFound("Review not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet("GetReportedReviews")]
+        public IActionResult GetReportedReviews()
+        {
+            try
+            {
+                var reviews = _context.Reviews.Include(r => r.Reports).Where(r => r.Reports != null && r.Reports.Count > 0).ToList();
+
+                if (reviews != null)
+                {
+                    return Ok(reviews);
+                }
+                else
+                    return NotFound("No reports found");
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

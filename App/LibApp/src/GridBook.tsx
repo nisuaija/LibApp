@@ -5,6 +5,8 @@ import Bookmark from "./assets/bookmark.svg?react";
 import Button from "react-bootstrap/Button"
 import Rating from "@mui/material/Rating/";
 import StarIcon from "@mui/icons-material/Star"
+import Reviews from "./Reviews";
+import BlurLayer from "./BlurLayer";
 
 type properties =
 {
@@ -20,6 +22,7 @@ const GridBook = (props : properties) => {
     const [isClicked, setIsClicked] = useState(false);
     const [isAvailable, setIsAvailable] = useState(props.userbook.isAvailable);
     const [score, setScore] = useState(0);
+    const [showReviews, setShowReviews] = useState(false);
 
     useEffect(() => {
         setIsAvailable(props.userbook.isAvailable);
@@ -58,6 +61,7 @@ const GridBook = (props : properties) => {
     }
 
     return(
+        <>
         <div className="col-md-auto">
                 <div className={!isClicked ? "coverContainer" : "coverContainer-expanded"} onClick={() => {GetRating(); setIsClicked(!isClicked); setShowX(false);}} onMouseEnter={() => setShowX(true)} onMouseLeave={() => setShowX(false)} >
                     <Bookmark className={isAvailable ? "bookmark-available" : "bookmark-notAvailable"}/>
@@ -72,15 +76,21 @@ const GridBook = (props : properties) => {
                         <p className="leftText">Author: <span className="rightText">{props.userbook.book!.author}</span></p>
                         <p className="leftText">Pages: <span className="rightText">{props.userbook.book!.pages}</span></p>
                         <p className="leftText">ISBN: <span className="rightText">{props.userbook.book!.isbn}</span></p>
-                        <div className="wishlistRating">
+                        <div className="wishlistRating" onClick={() => setShowReviews(true)}>
                             <Rating readOnly name="half-rating"  value={score} precision={0.5} emptyIcon={<StarIcon style={{ fill : "black", height: "30px", width:"30px"  }} fontSize="inherit" />} icon={<StarIcon style={{fill : "white", height: "30px", width:"30px" }} fontSize="inherit" />}/>
                             <p className="showReviewsText mt-2">Show reviews</p>
                         </div>
                         <Button className="AddToCurrentReads" onClick={e => handleAddToCurrentReads(e)}>Add to Current Reads</Button>
-                    </div>
+                    </div>                   
                     </>}           
                 </div>
         </div>
+        {   (showReviews && score > 0) && <>
+            <BlurLayer></BlurLayer>
+            <Reviews closeWindow={() => setShowReviews(false)} finna={props.userbook.finna_ID} />
+            </>
+        }
+        </>
     );
 }
 

@@ -8,6 +8,9 @@ import Checkmark from "./assets/checkmark.svg?react";
 import BlurLayer from "./BlurLayer";
 import FinishBook from "./FinishBook";
 import AddReview from "./AddReview";
+import Rating from "@mui/material/Rating/";
+import StarIcon from "@mui/icons-material/Star"
+import Reviews from "./Reviews";
 
 const CurrentReadsListElement = (props: {book : userBook, refresh : () => void}) => {
 
@@ -19,9 +22,12 @@ const CurrentReadsListElement = (props: {book : userBook, refresh : () => void})
     const [minimumPace, setMinimumPace] = useState(0);
     const [showFinish, setShowFinish] = useState(false);
     const [showAddReview, setShowAddReview] = useState(false);
+    const [score, setScore] = useState(0);
+    const [showReviews, setShowReviews] = useState(false);
 
     useEffect(() => {
         GetProgress();
+        GetRating();
         // eslint-disable-next-line
     }, [])
 
@@ -32,6 +38,13 @@ const CurrentReadsListElement = (props: {book : userBook, refresh : () => void})
             setInitialRender(false);
         // eslint-disable-next-line
     }, [startDate, dueDate])
+
+    const GetRating = async () =>
+    {
+        const rating = await axios.get(`http://localhost:5175/api/Review/GetAverageScoreByBook?finna_ID=${props.book.finna_ID}`);
+        setScore(Number(rating.data));
+    }
+
 
     const GetProgress = () =>
     {
@@ -96,6 +109,11 @@ const CurrentReadsListElement = (props: {book : userBook, refresh : () => void})
     }
 
     return(<>
+            {   (showReviews && score > 0) && <div className="reviewsCurrentReads">
+            <BlurLayer></BlurLayer>
+            <Reviews closeWindow={() => setShowReviews(false)} finna={props.book.finna_ID} />
+            </div>
+            }
             <Row className="elementContainer mb-5">
                 <Col className="col-2 elementCoverContainer">
                     <img className="elementCover" src={props.book.book?.image}></img>
@@ -105,7 +123,11 @@ const CurrentReadsListElement = (props: {book : userBook, refresh : () => void})
                     <p><span className="elementLeftText">Author:</span><span className="elementRightText">{props.book.book?.author}</span></p>
                     <p><span className="elementLeftText">Pages:</span><span className="elementRightText">{props.book.book?.pages}</span></p>
                     <p><span className="elementLeftText">ISBN:</span><span className="elementRightText">{props.book.book?.isbn}</span></p>
-                    <p><span className="elementLeftText">User score:</span><span className="elementRightText">X X X X X</span></p>
+                    <p><span className="elementLeftText">User score:</span></p>
+                    <div className="CRwishlistRating" onClick={()=>setShowReviews(true)}>
+                            <Rating readOnly name="half-rating"  value={score} precision={0.5} emptyIcon={<StarIcon style={{ fill : "black", height: "40px", width:"40px"  }} fontSize="inherit" />} icon={<StarIcon style={{fill : "white", height: "40px", width:"40px" }} fontSize="inherit" />}/>
+                            <p className="showReviewsText mt-2">Show reviews</p>
+                        </div>
                 </Col>
                 <Col className="col-3 elementCounterContainer">
                     <div className="barContainer">
