@@ -55,7 +55,7 @@ const ReviewFull = (props : {closeWindow : () => void, book : userBook | null, i
 
     return(<>
     { showAll &&
-        <div className={props.fromGrid ? "fullReviewGrid" : (props.isAdmin ? "adminClass" : "fullReview")}>
+        <div className={props.isAdmin ? "adminClass" : (props.fromGrid ? "fullReviewGrid" : "fullReview")}>
         <img src="X.png" onClick={props.closeWindow} className="x xPos"></img>
             <div className={props.fromGrid ? "fullReviewUpperBlockGrid" : "fullReviewUpperBlock"}>
                 { !props.isEditable &&

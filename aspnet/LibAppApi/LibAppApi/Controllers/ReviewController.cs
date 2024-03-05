@@ -64,7 +64,42 @@ namespace LibAppApi.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-    
+
+        [HttpDelete("DeleteReport")]
+        public async Task<IActionResult> RemoveReport(string reviewID, string reportID)
+        {
+            try
+            {
+                var foundReview = await _context.Reviews
+                     .Include(r => r.Reports)
+                     .FirstOrDefaultAsync(u => u.reviewID == reviewID);
+
+                if (foundReview != null)
+                {
+                    var report = foundReview.Reports.FirstOrDefault(rr => rr.ID == reportID);
+
+                    if (report != null)
+                    {
+                        _context.Reports.Remove(report);
+                        await _context.SaveChangesAsync();
+                        return Ok("Delete success");
+                    }
+                    else
+                    {
+                        return NotFound("Report not found");
+                    }
+                }
+                else
+                {
+                    return NotFound("Review not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
 
 
         [HttpGet("GetReview")]
@@ -148,6 +183,30 @@ namespace LibAppApi.Controllers
                     return NotFound("Reviews not found");
 
                 return Ok(reviews);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpDelete("DeleteAllReviewsByUser")]
+        public async Task<IActionResult> DeleteAllReviewsByUser(string user_ID)
+        {
+            try
+            {
+                var reviews = _context.Reviews.Where(r => r.UserID == user_ID).ToList();
+
+                if (reviews == null || reviews.Count == 0)
+                    return NotFound("Reviews not found");
+
+                foreach (var review in reviews)
+                {
+                    await RemoveReview(review.UserID, review.Finna_ID);
+                }
+
+                _context.SaveChanges();
+                return Ok("All reviews from user removed");
             }
             catch (Exception ex)
             {

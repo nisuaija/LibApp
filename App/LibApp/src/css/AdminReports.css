@@ -27,4 +27,56 @@
     height: 275px;
 }
 
+.reportInfo
+{
+    width: 100%;
+    height: 100%;
+    font-size: large;
+    font-weight: 100;
+    padding-top: 5%;
+}
+
+.reportUnderline
+{
+    background-color: #5B7B82;
+    height: 2px;
+    width: 380px;
+    margin-left: 156px;
+    margin-top: -18px;
+}
+
+.reportTextarea
+{
+    background-color: transparent;
+    width: 380px;
+    margin-left: 155px;
+    margin-top: -44px;
+    height: 125px;
+    resize: none;
+    border: none;
+
+}
+
+.reportDropdown
+{
+    margin-left: 25px;
+    width: 300px;
+}
+
+.resolveBtn
+{
+    background-color: #5B7B82;
+    font-size: 12px;
+    height: 28px;
+    margin-left: 10px;
+    margin-bottom: 4px;
+    border: none;
+}
+
+
+.resolveBtn:hover
+{
+    background-color: #304246;
+}
+
 

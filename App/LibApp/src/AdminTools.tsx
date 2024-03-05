@@ -2,6 +2,7 @@ import "./css/App.css";
 import "./css/AdminTools.css"
 import { useState } from "react";
 import AdminReports from "./AdminReports";
+import AdminUsers from "./AdminUsers";
 
 const AdminTools = () => {
 
@@ -20,7 +21,7 @@ const AdminTools = () => {
             <div className="adminSeparator"></div>
             <div className="adminContent">
                 {userMenu ? 
-                <p>User menu</p>
+                <AdminUsers/>
                 :
                 <AdminReports/>
                 }

@@ -10,6 +10,8 @@ namespace LibAppApi.Repositories
 
         public DbSet<Review> Reviews { get; set; }
 
+        public DbSet<Report> Reports { get; set; }
+
         public DbSet<SessionToken> SessionTokens { get; set; }
 
         public BooksContext(DbContextOptions<BooksContext> options) : base(options)
