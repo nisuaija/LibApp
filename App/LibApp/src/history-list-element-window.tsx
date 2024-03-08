@@ -67,7 +67,7 @@ const HistoryListElementWindow = (props : properties) =>
     const UpdateStats = () => {
         //Count days
         const differenceInMilliseconds : number = new Date(endDate).getTime() - new Date(startDate).getTime();
-        const differenceInDays : number = Math.ceil(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+        const differenceInDays : number = Math.ceil(differenceInMilliseconds / (1000 * 60 * 60 * 24)) + 1;
 
         setInDays(differenceInDays);
 

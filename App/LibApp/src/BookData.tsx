@@ -1,14 +1,16 @@
-import { Col, Row } from "react-bootstrap"
+import { Button, Col, Row } from "react-bootstrap"
 import "./css/BookData.css"
 import {book} from "./AddBook"
 import Rating from "@mui/material/Rating/";
 import StarIcon from "@mui/icons-material/Star"
 import { useEffect, useState } from "react";
 import axios from "axios";
+import EditIcon from "./assets/EditIcon.svg?react";
 
 const BookData = (props : {data : book, failed : boolean}) => {
     const [score, setScore] = useState(0);
-
+    const [editCover, setEditCover] = useState(false);
+    const [link, setLink] = useState(props.data.image);
     const GetRating = async () =>
     {
         const rating = await axios.get(`http://localhost:5175/api/Review/GetAverageScoreByBook?finna_ID=${props.data.finna_ID}`)
@@ -26,8 +28,15 @@ const BookData = (props : {data : book, failed : boolean}) => {
         <div>
             <h5>{props.data.title}</h5>
             <Row className="mt-4">
-                <Col>
-                <img className="cover" src={props.data.image}/>
+                <Col>          
+                { editCover ?<>
+                <label htmlFor="link" className="coverEditLabel">Link:</label>
+                <input name="link" value={link} onChange={e => setLink(e.target.value)} defaultValue={props.data.image} className="coverEditInput"></input>
+                <Button onClick={() =>{props.data.image = link; setEditCover(false);}} className="coverEditButton">Set</Button>
+                </>
+                :
+                <><img onClick={()=> setEditCover(true)} className="cover coverhvr" src={props.data.image}></img><EditIcon className="white-icon coverEdit"/></>
+                }
                 </Col>
                 <Col className="bookInfo">
                     <p className="infoTitle">Author:</p>

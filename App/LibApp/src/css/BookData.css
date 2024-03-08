@@ -4,6 +4,57 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
 
+.coverhvr:hover + .coverEdit
+{
+    opacity: 100%;
+}
+
+.coverhvr:hover
+{
+    opacity: 50%;
+    cursor: pointer;
+}
+
+.coverEdit
+{
+    position: absolute;
+    height: 50px;
+    width: auto;
+    left: 140px;
+    top: 310px;
+    pointer-events: none;
+    opacity: 0%;
+}
+
+.coverEditLabel
+{
+    position: absolute;
+    font-size: 12px;
+    height: 30px;
+    left: 65px;
+    top: 300px;
+}
+
+.coverEditButton
+{
+    position: absolute;
+    font-size: 12px;
+    height: 30px;
+    left: 208px;
+    top: 350px;
+}
+
+.coverEditInput
+{
+    position: absolute;
+    height: 25px;
+    width: 190px;
+    left: 62px;
+    top: 320px;
+    opacity: 100%;
+    font-size: 12px;
+}
+
 .infoTitle{
     text-align: left;
     color: rgb(48, 48, 48);
@@ -29,3 +80,10 @@
     top: -8px;
     
 }
+
+.resetImage:hover
+{
+    color: rgb(52, 59, 57);
+    cursor: pointer;
+}
+

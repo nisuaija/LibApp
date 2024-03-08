@@ -151,5 +151,40 @@ namespace LibAppApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("GetUsersBySearch")]
+        public IActionResult GetUsersBySearch(string query)
+        {
+            try
+            {
+                var foundUsers = _context.Users.Where(u => u.userName.Contains(query)).ToList();
+                return Ok(foundUsers);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("SetRole")]
+        public IActionResult SetRole(bool makeAdmin, string userID)
+        {
+            try
+            {
+                var foundUser = _context.Users.FirstOrDefault(u => u.userID == userID);
+
+                if (foundUser == null)
+                    return NotFound("User not found");
+
+                foundUser.isAdmin = makeAdmin;
+                _context.SaveChanges();
+                return Ok(foundUser);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

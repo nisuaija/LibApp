@@ -17,8 +17,9 @@ const NavigationBar = (props:{logout : () => void}) => {
         <>
         <Col className="left-sidebar">
             <div className="profile-info">
-              <p>TODO Profile info</p>
-              <p> {localStorage.getItem('username')}</p>
+              <img src="avatar.png" className="avatar avatarNav"></img>
+              <p><span className='navName'>{localStorage.getItem('username')}</span></p>
+              <p><span className="navRole">{localStorage.getItem('isAdmin') === "true" ? "admin" : "user"}</span> </p>
             </div>
             <div className="navigation-options">
               <ul>

@@ -6,6 +6,8 @@
 
 .userContainer
 {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+    background-color: #121317;
     width: 80%;
     height: 125px;
     margin: auto;
@@ -17,12 +19,53 @@
 {
     height: 100%;
     width: 40%;
-    background-color: aquamarine;
+    display: flex;
+    align-items: center;
+}
+
+.adminUserAvatar
+{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    margin-left: 30px;
 }
 
 .adminUserAction
 {
     height: 100%;
     width: 60%;
-    background-color: firebrick;
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+}
+
+.adminUserAction Button
+{
+    margin-top: 3px;
+    margin-left: 20px;
+}
+
+.adminUserAction label
+{
+    margin-top: 2px;
+}
+
+
+.userNames
+{
+    margin-left: 30px;
+    height: 100%;
+    display: block;
+    line-height: 10px;
+    margin-top: 87px;
+}
+
+.userSeparator
+{
+    height: 80%;
+    width: 2px;
+    background-color: #5B7B82;
+    margin-left: 200px;
+    margin-top: -84px;
 }
